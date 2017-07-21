@@ -1,4 +1,4 @@
-
+import { HttpModule } from "@angular/http";
 
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -20,7 +20,8 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

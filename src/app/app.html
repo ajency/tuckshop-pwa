@@ -2,34 +2,45 @@
 
 
 
-<ion-header class= "bar bar-header bar-positive">
+<!--<ion-header class= "bar bar-header bar-positive">
 
 <h1 align="center" >Search Google Spreadsheet</h1>
 
 </ion-header>
+-->
 
-<br><br><br>
+<ion-header>
+  <ion-navbar align="center" color="dark">
+    <ion-title>Search in Google spreadsheet</ion-title>
+  </ion-navbar>
+</ion-header>
 
-<ion-content align = "center">
+
+
+<ion-content align = "center" padding>
 
 <!--
 <label >
 	Serach here
 	<input type="search" name="">
 </label>
--->
+
 
 <label class="item-input-wrapper">
     <i class="icon ion-ios7-search placeholder-icon"></i>
     <input type="search" placeholder="Search here">
   </label>
+-->
+<ion-searchbar (ionInput)="getItems($event)"   [(ngModel)]="myInput" ></ion-searchbar>
+
+
 
 
 <ion-list>
-
-
-
-</ion-list>
+    <ion-item *ngFor="let item of mf.data">
+      {{ item.color }}
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>
