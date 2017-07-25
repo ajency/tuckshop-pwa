@@ -2,6 +2,8 @@
 
 
 
+
+
 <!--<ion-header class= "bar bar-header bar-positive">
 
 <h1 align="center" >Search Google Spreadsheet</h1>
@@ -11,10 +13,9 @@
 
 <ion-header>
   <ion-navbar align="center" color="dark">
-    <ion-title>Search in Google spreadsheet</ion-title>
+    <ion-title>Tuckshop</ion-title>
   </ion-navbar>
 </ion-header>
-
 
 
 <ion-content align = "center" padding>
@@ -31,14 +32,41 @@
     <input type="search" placeholder="Search here">
   </label>
 -->
-<ion-searchbar (ionInput)="getItems($event)"   [(ngModel)]="myInput" ></ion-searchbar>
+
+
+<ion-list>
+
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input [(ngModel)]="username" type="text" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input [(ngModel)]="password"  type="password" value=""></ion-input>
+  </ion-item>
+
+</ion-list>
+
+<div padding>
+  <button primary block  (click)="handleClientLoad()">Sign In</button>
+</div>
+
+
+
+
+
+
+
+<!-- Search Bar-->
+<ion-searchbar (ionInput)="getI($event)"   [(ngModel)]="myInput" ></ion-searchbar>
 
 
 
 
 <ion-list>
-    <ion-item *ngFor="let item of mf.data">
-      {{ item.color }}
+    <ion-item *ngFor="let item of items">
+      {{ item.name}}
     </ion-item>
   </ion-list>
 
