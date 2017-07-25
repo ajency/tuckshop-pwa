@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 import { Item } from './item';
-import { HomePage } from '../pages/home/home';
+// import { HomePage } from '../pages/home/home';
 
 
 @Component({
@@ -18,8 +18,8 @@ import { HomePage } from '../pages/home/home';
 
 
 export class MyApp  {
-  rootPage:any = HomePage;
-  
+  rootPage:any = 'HomePage';
+
 
   obItem : Observable<Item[]>;
   items : Item[];
@@ -42,7 +42,7 @@ export class MyApp  {
 
      public gapi : any;
 
- 
+
         public CLIENT_ID  : any = '660542430424-1b1q0p8uadmj21evjkjsm1bp595ao9ec.apps.googleusercontent.com';
       // public CLIENT_ID  : any = '660542430424-82kuc06uf5b068dib6sjgcb1cr4jp286.apps.googleusercontent.com';
          // public CLIENT_ID : any = '676621258132-6q9s2j1hc8343jj3nn75k0is4s1nb893.apps.googleusercontent.com';
@@ -281,7 +281,7 @@ op.execute(function(resp) {
   this.obItem.subscribe(
         (response) => {console.log("items",response); this.items = response;},
         (error) => {this.errorMessage = error});
-   
+
 
 
   }
@@ -306,7 +306,7 @@ op.execute(function(resp) {
      console.log("extract data: ",body);
      return body.data;
     }
-    
+
     private handleErrorObservable (error: Response | any) {
       console.error(error.message );
       return Observable.throw(error.message || error);
@@ -363,7 +363,7 @@ op.execute(function(resp) {
                     this.items = data.json();
                 }, 1000);
                             });
-    
+
 
     this.http.get("http://www.mocky.io/v2/596dc5480f000022032b7f0a")
             .subscribe((data)=> {
@@ -377,5 +377,6 @@ op.execute(function(resp) {
   }
 
   */
+
 }
 
