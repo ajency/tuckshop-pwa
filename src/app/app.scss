@@ -44,3 +44,17 @@ ion-footer{
 		// background-color: color($colors, ajency, contrast);
 	}
 }
+
+.fadeInUp{
+	animation: fadeinup 0.3s;
+}
+@keyframes fadeinup {
+    from {
+    	opacity: 0;
+    	transform: translate3d(0,5px,0);
+    }
+    to   {
+    	opacity: 1;
+    	transform: translate3d(0,0,0);
+    }
+}

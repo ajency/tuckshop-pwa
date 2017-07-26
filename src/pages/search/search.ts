@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController } from 'ionic-angular';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -23,7 +23,11 @@ export class SearchPage {
 	items : Item[];
 	errorMessage : String;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public modalCtrl: ModalController, private http : Http) {
+	private loadingItems = false;
+	private loadResults = false;
+	private loadError = false;
+
+	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public modalCtrl: ModalController, public toastCtrl: ToastController, private http : Http) {
 	}
 
 	ionViewDidLoad() {
@@ -34,16 +38,38 @@ export class SearchPage {
 		this.viewCtrl.showBackButton(false);
 	}
 
+	errorToast() {
+	    let toast = this.toastCtrl.create({
+	      message: 'Something went wrong! Please try again.',
+	      showCloseButton: true,
+	      closeButtonText: "OK",
+	      dismissOnPageChange: true
+	    });
+	    toast.present();
+	}
+
 
 	//search and display part
 
 	url = "http://www.mocky.io/v2/5975a52c1100004501b1bb90";
 
 	getI(ev) : void {
+		this.loadingItems = true
 		this.obItem = this.getItems(ev);
 		this.obItem.subscribe(
-		(response) => {console.log("items",response); this.items = response;},
-		(error) => {this.errorMessage = error});
+		(response) => {
+			console.log("items",response);
+			this.items = response;
+			this.loadingItems = false;
+			this.loadError = false;
+			this.loadResults = true;
+		},
+		(error) => {
+			this.errorMessage = error;
+			this.loadingItems = false;
+			this.loadError = true;
+			this.errorToast();
+		});
 	}
 
   	getItems(ev) : Observable<Item[]> {

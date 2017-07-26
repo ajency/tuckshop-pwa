@@ -17,10 +17,18 @@
 	<!-- Search Bar-->
 	<ion-searchbar (ionInput)="getI($event)" [(ngModel)]="myInput" ></ion-searchbar>
 
-	<ion-list>
-		<ion-item *ngFor="let item of items" (click)="confirmPurchase(item)">
+	<div *ngIf="loadingItems" text-center class="search-load">
+		<ion-spinner margin color="ajency"></ion-spinner>
+	</div>
+
+	<ion-list *ngIf="loadResults && !loadingItems && !loadError">
+		<ion-item *ngFor="let item of items" (click)="confirmPurchase(item)" class="fadeInUp">
 			{{ item.name}}
 			<div item-end><small>Rs.</small>20</div>
 		</ion-item>
 	</ion-list>
+
+	<div margin text-center *ngIf="loadError">
+		No Results
+	</div>
 </ion-content>
