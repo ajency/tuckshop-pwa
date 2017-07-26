@@ -15,7 +15,10 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class BuyPage {
 
+	private item = []
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
+  	this.item = this.navParams.get('item');
   }
 
   ionViewDidLoad() {

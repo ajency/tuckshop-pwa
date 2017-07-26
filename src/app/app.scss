@@ -29,3 +29,18 @@
 		}
 	}
 }
+
+ion-header{
+	.toolbar-background{
+		background-color: color($colors, ajency, base);
+	}
+	.toolbar-title{
+		color: color($colors, ajency, contrast);
+	}
+}
+
+ion-footer{
+	.toolbar-background{
+		// background-color: color($colors, ajency, contrast);
+	}
+}

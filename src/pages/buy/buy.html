@@ -6,20 +6,19 @@
 -->
 <ion-header>
 	<ion-navbar>
-		<ion-title>Buy Item?</ion-title>
+		<ion-title>Buy {{item.name}}?</ion-title>
 	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-	{{item}}
 	<ion-list no-lines>
 		<ion-item no-padding>
 			<div item-left>
-				Item
+				{{item.name}}
 			</div>
 			<div item-end>
-			  20
+			  <small>Rs.</small>20
 			</div>
 		</ion-item>
 	</ion-list>
