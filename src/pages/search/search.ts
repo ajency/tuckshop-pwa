@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController } from 'ionic-angular';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -26,35 +26,56 @@ export class SearchPage {
 	public objs : any [];
 	errorMessage : String;
 
-public test : any = 'sujit';
+	private loadingItems = false;
+	private loadResults = false;
+	private loadError = false;
 
-
-
-public abc : String[];
-	
-	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private http : Http) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public modalCtrl: ModalController, public toastCtrl: ToastController, private http : Http) {
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad SearchPage');
-		console.log(this.test);
+		// console.log(this.test);
 
 	}
 
 	ionViewWillEnter() {
-        this.viewCtrl.showBackButton(false);
-    }
+		this.viewCtrl.showBackButton(false);
+	}
+
+	errorToast() {
+	    let toast = this.toastCtrl.create({
+	      message: 'Something went wrong! Please try again.',
+	      showCloseButton: true,
+	      closeButtonText: "OK",
+	      dismissOnPageChange: true
+	    });
+	    toast.present();
+	}
 
 
 	//search and display part
 
 	// url = "http://www.mocky.io/v2/5975a52c1100004501b1bb90";
 
+
 	// getI(ev) : void {
+	// 	this.loadingItems = true
 	// 	this.obItem = this.getItems(ev);
 	// 	this.obItem.subscribe(
-	// 	(response) => {console.log("items",response); this.items = response;},
-	// 	(error) => {this.errorMessage = error});
+	// 	(response) => {
+	// 		console.log("items",response);
+	// 		this.items = response;
+	// 		this.loadingItems = false;
+	// 		this.loadError = false;
+	// 		this.loadResults = true;
+	// 	},
+	// 	(error) => {
+	// 		this.errorMessage = error;
+	// 		this.loadingItems = false;
+	// 		this.loadError = true;
+	// 		this.errorToast();
+	// 	});
 	// }
 
  //  	getItems(ev) : Observable<Item[]> {
@@ -124,7 +145,6 @@ op.execute(function(resp) {
 
     // this.test = result[0];
 
- // console.log(test);
 
   if (result.error && result.error.status) {
     // The API encountered a problem before the script
@@ -166,13 +186,13 @@ op.execute(function(resp) {
 }
 
 
-confirmPurchase(item) {
+
+	confirmPurchase(item) {
 		let product = [];
 		product = item;
-		// let modal = this.modalCtrl.create('BuyPage',{item: product});
+		let modal = this.modalCtrl.create('BuyPage',{item: product});
 		console.log(item.name)
-		// modal.present();
+		modal.present();
 	}
-
 
 }
