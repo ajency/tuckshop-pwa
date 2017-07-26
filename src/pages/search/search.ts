@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -23,7 +23,7 @@ export class SearchPage {
 	items : Item[];
 	errorMessage : String;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private http : Http) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public modalCtrl: ModalController, private http : Http) {
 	}
 
 	ionViewDidLoad() {
@@ -31,8 +31,8 @@ export class SearchPage {
 	}
 
 	ionViewWillEnter() {
-        this.viewCtrl.showBackButton(false);
-    }
+		this.viewCtrl.showBackButton(false);
+	}
 
 
 	//search and display part
@@ -60,7 +60,6 @@ export class SearchPage {
 	        .catch(this.handleErrorObservable);
   	}
 
-
 	private extractData(res: Response) {
 		let body = res.json();
 		console.log("extract data: ",body);
@@ -70,6 +69,14 @@ export class SearchPage {
 	private handleErrorObservable (error: Response | any) {
 		console.error(error.message );
 		return Observable.throw(error.message || error);
+	}
+
+	confirmPurchase(item) {
+		let product = [];
+		product = item;
+		let modal = this.modalCtrl.create('BuyPage',{item: product});
+		console.log(item.name)
+		modal.present();
 	}
 
 }
