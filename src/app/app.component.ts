@@ -4,11 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
-import 'rxjs/add/operator/map';
-import { Item } from './item';
-// import { HomePage } from '../pages/home/home';
-
-
 @Component({
   templateUrl: 'app.html'
 })

@@ -6,8 +6,15 @@
 -->
 
 <ion-header>
-	<ion-navbar align="center">
+	<ion-navbar align="center" color="ajency">
 		<ion-title>Tuckshop</ion-title>
+		<ion-buttons start>
+      <button ion-button>
+        <ion-icon name="contact" >
+        	
+        </ion-icon>
+      </button>
+    </ion-buttons>
 	</ion-navbar>
 </ion-header>
 
@@ -22,9 +29,9 @@
 		<ion-spinner margin color="ajency"></ion-spinner>
 	</div>
 
-	<ion-list *ngIf="loadResults && !loadingItems && !loadError">
-		<ion-item *ngFor="let item of objs" (click)="confirmPurchase(item)" class="fadeInUp">
-			{{ item.name}}
+	<ion-list >
+		<ion-item *ngFor="let item of items" (click)="confirmPurchase(item)" class="fadeInUp">
+			{{ item.itemName }}
 			<div item-end><small>Rs.</small>20</div>
 		</ion-item>
 	</ion-list>

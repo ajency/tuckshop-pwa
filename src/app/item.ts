@@ -1,7 +1,19 @@
 export class Item{
-	name : string;
 
-	constuctor(){}
+	itemCode : number;
+	itemName : string;
+	type 	 : string;
+	price	 : number;
+	description : string;
+
+
+	constuctor(res){
+		// this.itemCode = res.itemCode;
+		// this.itemName = res.itemName;
+		// this.type = res.type;
+		// this.price = res.type;
+		// this.description = res.description; 
+	}
 
 
 }

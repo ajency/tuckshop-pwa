@@ -36,7 +36,7 @@ export class HomePage {
     let that = this;
     gapi.load('auth2', function () {
       that.auth2 = gapi.auth2.init({
-        client_id: '660542430424-1b1q0p8uadmj21evjkjsm1bp595ao9ec.apps.googleusercontent.com',
+        client_id: '676621258132-6q9s2j1hc8343jj3nn75k0is4s1nb893.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
         scope: 'https://www.googleapis.com/auth/spreadsheets'
       });
