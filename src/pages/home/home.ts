@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { IonicPage,NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage,NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 
 declare const gapi : any;
 
@@ -12,8 +12,8 @@ declare const gapi : any;
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-  
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
+
   }
 
   navigateToSearch() {
@@ -61,6 +61,16 @@ export class HomePage {
     });
   }
 
+  loginError() {
+      let toast = this.toastCtrl.create({
+        message: 'Oops! You aren\'t signed in. ',
+        showCloseButton: true,
+        closeButtonText: "OK",
+        dismissOnPageChange: true
+      });
+      toast.present();
+  }
+
 
   public attachSignin(element) {
     let that = this;
@@ -81,7 +91,8 @@ export class HomePage {
          // that.callScriptFunction();
 
       }, function (error) {
-        alert(JSON.stringify(error, undefined, 2));
+        // alert(JSON.stringify(error, undefined, 2));
+        that.loginError()
       });
   }
 
