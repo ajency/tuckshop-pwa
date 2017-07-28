@@ -18,12 +18,12 @@
 				{{item.name}}
 			</div>
 			<div item-end>
-			  <small>Rs.</small>20
+			  <small>Rs.</small>{{item.price}}
 			</div>
 		</ion-item>
 	</ion-list>
 	<p>
-		A checkbox is an input component that holds a boolean value. Checkboxes are no different than HTML checkbox inputs.
+		{{item.description}}
 	</p>
 </ion-content>
 
@@ -35,7 +35,7 @@
 			</button>
 		</ion-buttons>
 		<ion-buttons end>
-			<button ion-button color="dark">
+			<button ion-button color="dark" (click) = "onBuy(item.itemCode)">
 				Buy
 			</button>
 		</ion-buttons>

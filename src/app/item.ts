@@ -7,7 +7,7 @@ export class Item{
 	description : string;
 
 
-	constuctor(res){
+	constuctor(){
 		// this.itemCode = res.itemCode;
 		// this.itemName = res.itemName;
 		// this.type = res.type;

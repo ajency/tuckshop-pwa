@@ -22,7 +22,9 @@
 
 <ion-content>
 	<!-- Search Bar-->
-	<ion-searchbar (ionInput)="callScriptFunction($event)" [(ngModel)]="myInput" ></ion-searchbar>
+	<ion-searchbar (ionInput)="callScriptFunction($event)" [(ngModel)]="myInput" [showCancelButton]=false
+	(ionCancel)="onCancel($event)">
+ ></ion-searchbar>
 
 
 	<div *ngIf="loadingItems" text-center class="search-load">
@@ -30,9 +32,9 @@
 	</div>
 
 	<ion-list >
-		<ion-item *ngFor="let item of items" (click)="confirmPurchase(item)" class="fadeInUp">
+		<ion-item *ngFor="let item of response" (click)="confirmPurchase(item)" class="fadeInUp">
 			{{ item.itemName }}
-			<div item-end><small>Rs.</small>20</div>
+			<div item-end><small>Rs.</small>{{item.price}}</div>
 		</ion-item>
 	</ion-list>
 
