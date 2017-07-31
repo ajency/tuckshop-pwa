@@ -60,39 +60,10 @@ export class SearchPage {
 // Authentication of user to search 
 
 
-// handleClientLoad() {
-
-// 	  	let that = this;
-//         gapi.load('client:auth2', function () {
-//         gapi.client.init({
-//            client_id: '676621258132-6q9s2j1hc8343jj3nn75k0is4s1nb893.apps.googleusercontent.com',
-//         cookiepolicy: 'single_host_origin',
-//         scope: 'https://www.googleapis.com/auth/spreadsheets'
-//         }).then(function () {
-
-//           // Listen for sign-in state changes.
-
-//   				          gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
-
-//           console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
-//           // this.test(true);
-//           that.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-
-           
-     
-//           // authorizeButton.onclick = handleAuthClick;
-//           // signoutButton.onclick = handleSignoutClick;
-//         });
-//         });
-
-//       }
-
-
- public handleClientLoad() {
-
+handleClientLoad() {
+	console.log("handleClientLoad");
 	  	let that = this;
         gapi.load('client:auth2', function () {
-        	console.log(this);
         gapi.client.init({
            client_id: '676621258132-6q9s2j1hc8343jj3nn75k0is4s1nb893.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
@@ -100,58 +71,35 @@ export class SearchPage {
         }).then(function () {
 
           // Listen for sign-in state changes.
-          // gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
 
-          // Handle the initial sign-in state.
-          // let profile = googleUser.getBasicProfile();
-  //       console.log('Token || ' + googleUser.getAuthResponse().id_token);
-  //       console.log('ID: ' + profile.getId());
-  //       console.log('Name: ' + profile.getName());
-  //       console.log('Image URL: ' + profile.getImageUrl());
-  //       console.log('Email: ' + profile.getEmail());
-
-          // gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
+  				          gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
 
           console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
-          console.log(that);
-
-          if(gapi.auth2.getAuthInstance().isSignedIn.get())
-                that.navCtrl.push('SearchPage');
-          else
-              gapi.auth2.getAuthInstance().signIn().then(function () {
-                that.navCtrl.push('SearchPage');
-              });
-
-
-
-
-
           // this.test(true);
-          // that.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          that.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+
+           
+     
           // authorizeButton.onclick = handleAuthClick;
           // signoutButton.onclick = handleSignoutClick;
         });
         });
-        
+
       }
 
+      updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+        	//Do nothing
+        			this.callScriptFunction();
 
+        } else {
 
-      
+       // *  Sign in the user upon button click.
 
-      // updateSigninStatus(isSignedIn) {
-      //   if (isSignedIn) {
-      //   	//Do nothing
-      //   			this.callScriptFunction();
-
-      //   } else {
-
-      //  // *  Sign in the user upon button click.
-
-		    // 	        gapi.auth2.getAuthInstance().signIn();
-	     //            // this.navCtrl.push('SearchPage');
-      //   }
-      // }
+		    	        gapi.auth2.getAuthInstance().signIn();
+	                // this.navCtrl.push('SearchPage');
+        }
+      }
 	
 
 
