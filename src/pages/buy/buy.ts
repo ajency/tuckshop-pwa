@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 
 declare const gapi : any;
 /**
@@ -19,7 +19,7 @@ export class BuyPage {
 	private item = [];
   public auth2 : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private toastCtrl: ToastController) {
   	this.item = this.navParams.get('item');
   }
 
@@ -37,7 +37,7 @@ export class BuyPage {
 
 handleClientLoad() {
 
-      let that = this;
+      // let that = this;
         gapi.load('client:auth2', function () {
         gapi.client.init({
            client_id: '676621258132-6q9s2j1hc8343jj3nn75k0is4s1nb893.apps.googleusercontent.com',
@@ -70,7 +70,7 @@ onBuy(ev) {
       console.log("onBuy", ev);
       var scriptId = "MD2K4IAXQvDUx9j9i90DKEK-i8ofEvg_L";
 
-      let that = this;
+      // let that = this;
 
      
       var user =  gapi.auth2.getAuthInstance().currentUser.get().w3.U3;
@@ -96,8 +96,23 @@ var op = gapi.client.request({
     
 });
 
-
+this.viewCtrl.dismiss();
+this.confirmationToast();
+  
 }
 
+
+
+
+confirmationToast() {
+  let toast = this.toastCtrl.create({
+    message: 'Order placed successfully',
+    duration: 3000,
+    position: 'bottom'
+  });
+
+
+  toast.present();
+}
 
 }

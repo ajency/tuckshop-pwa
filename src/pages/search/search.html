@@ -22,8 +22,7 @@
 
 <ion-content>
 	<!-- Search Bar-->
-	<ion-searchbar (ionInput)="callScriptFunction($event)" [(ngModel)]="myInput" [showCancelButton]=false
-	(ionCancel)="onCancel($event)">
+	<ion-searchbar (ionInput)="callFilter($event)" [(ngModel)]="myInput" debounce = 2000 autocomplete = "on" autocorrect = "on">
  ></ion-searchbar>
 
 

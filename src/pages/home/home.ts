@@ -33,8 +33,7 @@ export class HomePage {
 	public auth2: any;
 
 
-
-	  handleClientLoad() {
+	  public handleClientLoad() {
 
 	  	let that = this;
         gapi.load('client:auth2', function () {
@@ -56,12 +55,24 @@ export class HomePage {
   //       console.log('Image URL: ' + profile.getImageUrl());
   //       console.log('Email: ' + profile.getEmail());
 
-          gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
+          // gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
 
           console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
           console.log(that);
+
+          if(gapi.auth2.getAuthInstance().isSignedIn.get())
+                that.navCtrl.push('SearchPage');
+          else
+              gapi.auth2.getAuthInstance().signIn().then(function () {
+                that.navCtrl.push('SearchPage');
+              });
+
+
+
+
+
           // this.test(true);
-          that.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          // that.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           // authorizeButton.onclick = handleAuthClick;
           // signoutButton.onclick = handleSignoutClick;
         });
@@ -70,25 +81,29 @@ export class HomePage {
       }
 
 
-      updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
-          // authorizeButton.style.display = 'none';
-          // signoutButton.style.display = 'block';
-          // callScriptFunction();
-          //call API
-          this.navCtrl.push('SearchPage');
-        } else {
+     // public updateSigninStatus(isSignedIn) {
+     //  // let that = this;
+     //  console.log(this);
+     //    if (isSignedIn) {
+     //      console.log(this);
+     //      // authorizeButton.style.display = 'none';
+     //      // signoutButton.style.display = 'block';
+     //      // callScriptFunction();
+     //      //call API
+     //      this.navCtrl.push('SearchPage');
+     //    } else {
 
-       // *  Sign in the user upon button click.
+     //   // *  Sign in the user upon button click.
 
-        	        gapi.auth2.getAuthInstance().signIn();
-        	                  this.navCtrl.push('SearchPage');
+     //    	        gapi.auth2.getAuthInstance().signIn();
+     //              console.log(this);
+     //    	                  // this.navCtrl.push('SearchPage');
 
 
-          // authorizeButton.style.display = 'block';
-          // signoutButton.style.display = 'none';
-        }
-      }
+     //      // authorizeButton.style.display = 'block';
+     //      // signoutButton.style.display = 'none';
+     //    }
+     //  }
 
    
 
