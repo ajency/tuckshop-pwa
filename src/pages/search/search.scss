@@ -1,0 +1,10 @@
+page-search {
+	.searchbar-ios{
+		background-color: transparent;
+	}
+
+	ion-item.item{
+		color: color($colors, ajency, contrast);
+		text-transform: capitalize;
+	}
+}
