@@ -90,12 +90,15 @@ handleClientLoad() {
       updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
         	//Do nothing
+        	this.callScriptFunction();
+
+
         } else {
 
        // *  Sign in the user upon button click.
 
 		    	        gapi.auth2.getAuthInstance().signIn();
-	                this.navCtrl.push('SearchPage');
+	                // this.navCtrl.push('SearchPage');
         }
       }
 	
@@ -106,8 +109,16 @@ handleClientLoad() {
 //search and display part
 
 	
-callScriptFunction(ev) {
-      console.log("callScriptFunction", ev.target.value);
+callScriptFunction() {
+
+ // if(ev.target.value!=undefined && ev.target.value != "") {
+       
+ //      	this.loadingItems = true;
+ //      	this.loadError = false;
+      	console.log("callScriptFunction");
+
+      
+
       var scriptId = "MD2K4IAXQvDUx9j9i90DKEK-i8ofEvg_L";
 
       let that = this;
@@ -115,7 +126,7 @@ callScriptFunction(ev) {
        // Create execution request.
 var request = {
     'function': 'search',
-    'parameters': ev.target.value
+    'parameters': ""
     // 'devMode': true   // Optional.
 };
 // Make the request.
@@ -133,7 +144,7 @@ var op = gapi.client.request({
     
 });
 
-
+// }
 }
 
 
@@ -143,7 +154,13 @@ processResponse(resp: any) {
 this.response = resp.response.result;
 console.log(this.response);
 
+if(Object.keys(this.response).length ==0)
+	{this.loadError = true
+  this.loadingItems = false;
+}
+this.loadingItems = false;
 this.zone.run(() => {});
+
 
 }
 
@@ -161,6 +178,12 @@ confirmPurchase(item) {
 	onCancel()
 	{
 		console.log("cancel button");
+	}
+
+
+	public callFilter()
+	{
+
 	}
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 import { IonicPage,NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 
@@ -11,9 +11,11 @@ import { IonicPage,NavController, NavParams, ModalController, ToastController } 
   templateUrl: 'home.html'
 })
 export class HomePage {
+ // private updateSigninStatus: any;
+  constructor(public navCtrl: NavController, public zone: NgZone, public toastCtrl: ToastController) {
+    // this.updateSigninStatus = () => {
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
-
+    // }
   }
 
   navigateToSearch() {
@@ -71,18 +73,23 @@ export class HomePage {
 
 
       updateSigninStatus(isSignedIn) {
+          console.log(this);
+        // this.zone.run(() => {});
         if (isSignedIn) {
           // authorizeButton.style.display = 'none';
           // signoutButton.style.display = 'block';
           // callScriptFunction();
           //call API
+          console.log(this);
+
           this.navCtrl.push('SearchPage');
         } else {
-
+                  console.log(this);
        // *  Sign in the user upon button click.
 
-        	        gapi.auth2.getAuthInstance().signIn();
-        	                  this.navCtrl.push('SearchPage');
+        	        gapi.auth2.getAuthInstance().signIn().then(function () {
+                this.navCtrl.push('SearchPage');
+              });
 
 
           // authorizeButton.style.display = 'block';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 
 declare const gapi : any;
 /**
@@ -19,7 +19,7 @@ export class BuyPage {
 	private item = [];
   public auth2 : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private toastCtrl: ToastController) {
   	this.item = this.navParams.get('item');
   }
 
@@ -97,7 +97,23 @@ var op = gapi.client.request({
 });
 
 
+this.viewCtrl.dismiss();
+this.confirmationToast();
+
 }
+
+
+confirmationToast() {
+  let toast = this.toastCtrl.create({
+    message: 'Order placed successfully',
+    duration: 3000,
+    position: 'bottom'
+  });
+
+
+  toast.present();
+}
+
 
 
 }
