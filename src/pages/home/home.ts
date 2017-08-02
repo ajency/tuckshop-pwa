@@ -39,13 +39,13 @@ export class HomePage {
 	  handleClientLoad() {
 
 	  	let that = this;
-        gapi.load('client:auth2', function () {
+        gapi.load('client:auth2',()=> {
         	console.log(this);
         gapi.client.init({
            client_id: '676621258132-6q9s2j1hc8343jj3nn75k0is4s1nb893.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
         scope: 'https://www.googleapis.com/auth/spreadsheets'
-        }).then(function () {
+        }).then( () => {
 
           // Listen for sign-in state changes.
           // gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
@@ -58,7 +58,7 @@ export class HomePage {
   //       console.log('Image URL: ' + profile.getImageUrl());
   //       console.log('Email: ' + profile.getEmail());
 
-          gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
+          // gapi.auth2.getAuthInstance().isSignedIn.listen(that.updateSigninStatus);
 
           console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
           console.log(that);
@@ -87,7 +87,7 @@ export class HomePage {
                   console.log(this);
        // *  Sign in the user upon button click.
 
-        	        gapi.auth2.getAuthInstance().signIn().then(function () {
+        	        gapi.auth2.getAuthInstance().signIn().then(() =>{
                 this.navCtrl.push('SearchPage');
               });
 

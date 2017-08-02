@@ -38,12 +38,12 @@ export class BuyPage {
 handleClientLoad() {
 
       let that = this;
-        gapi.load('client:auth2', function () {
+        gapi.load('client:auth2', () => {
         gapi.client.init({
            client_id: '676621258132-6q9s2j1hc8343jj3nn75k0is4s1nb893.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
         scope: 'https://www.googleapis.com/auth/spreadsheets'
-        }).then(function () {
+        }).then( () => {
 
           // Listen for sign-in state changes.
 
