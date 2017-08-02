@@ -87,9 +87,9 @@ export class HomePage {
                   console.log(this);
        // *  Sign in the user upon button click.
 
-        	        gapi.auth2.getAuthInstance().signIn().then( () => {
+        	        gapi.auth2.getAuthInstance().signIn()
                 this.navCtrl.push('SearchPage');
-              });
+            
 
 
           // authorizeButton.style.display = 'block';
